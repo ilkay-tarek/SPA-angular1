@@ -30,7 +30,7 @@ function LunchCheckMessage($scope){
 
 function calculateItems(string){
   var itemsNumbers = 0;
-  var items = string.split(',');
+  var items = string.split(/\s*(?:,|$)\s*/);
   if (items.leghth==1 && items[0]=="") {
     return itemsNumbers;
   }

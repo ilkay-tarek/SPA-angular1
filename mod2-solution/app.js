@@ -1,27 +1,60 @@
 (function (){
 'use strict';
 
-angular.module('ListBuyItems', [])
+angular.module('ShoppingListCheckOff', [])
 
-.controller('ListItemsController', ListItmes)
+.controller('ToBuyController', ToBuy)
 
-.controller('BoughtItemController', BuyItems)
+.controller('AlreadyBoughtController', AlreadyBought)
 
-.services('ItmesCheckOut', CheckOutItmes);
+.service('ShoppingListCheckOffService', CheckOutItmesService);
 
-ListItemsController.$inject=['ItmesCheckOutService'];
+ToBuy.$inject=['ShoppingListCheckOffService'];
 
-function ListItmes('ItmesCheckOutService'){
+function ToBuy(ShoppingListCheckOffService){
+  var buy = this;
+
+  buy.buyItems = ShoppingListCheckOffService.getBuyItems();
+
+  buy.moveToBought = function(itemindex)
+  {
+    ShoppingListCheckOffService.moveToBought(itemindex);
+  };
+}
+
+AlreadyBought.$inject=['ShoppingListCheckOffService'];
+
+function AlreadyBought(ShoppingListCheckOffService){
+var bought = this;
+bought.boughtItems=ShoppingListCheckOffService.getBoughtItems();
 
 }
 
-BoughtItemController.$inject=['ItmesCheckOutService'];
+function CheckOutItmesService(){
+  var service = this;
 
-function BuyItems(ItmesCheckOutService){
+  var buyItems = [{name: "Milk",quantity: "2"},
+ {name: "Donuts",quantity: "200"},
+ {name: "Cookies",quantity: "300"},
+ {name: "Chocolate",quantity: "5"},
+ {name: "Ice-cream",quantity: "7"}];
 
-}
+ var boughtitems = [];
 
-function CheckOutItmes(){
+ service.getBuyItems = function () {
+    return buyItems;
+  };
+
+  service.getBoughtItems = function (){
+    return boughtitems;
+  };
+
+  service.moveToBought = function(itemindex)
+  {
+    var tempitem = buyItems[itemindex];
+    buyItems.splice(itemindex, 1);
+    boughtitems.push(tempitem);
+  };
 
 }
 

@@ -1,0 +1,6 @@
+<ul class="nav nav-pills" style="margin-left: 13px;">
+    <li ng-repeat="category in $ctrl.categories | orderBy:'name'">
+      <a ui-sref="categories.items({categoryShortName: category.short_name})" id="{{category.short_name}}">{{category.name}}</a>
+    </li>
+</ul>
+  

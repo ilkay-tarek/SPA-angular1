@@ -1,0 +1,30 @@
+body {
+  margin: 20px 30px 20px 30px;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+.loading-icon {
+  position: absolute;
+  left: 40%;
+  top: 0px;
+}
+
+.error {
+  font-weight: bold;
+  color: red;
+  font-size: 1.2em;
+}
+
+.table {
+  width:95%;
+  margin-left:30px;
+}
+
+
+
+
+

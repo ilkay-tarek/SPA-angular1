@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div ng-repeat="item in menu.foundItems">
         <div class="clearfix" ng-if="$index % 2 == 0"></div>
         <div class="col-md-6">
@@ -10,5 +10,17 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<table class="table">
+      <tbody>
+        
+        <tr ng-repeat="item in menu.foundItems">  
+          <td>{{ item.short_name }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td><input type="button" ng-click="menu.onRemove({index: $index})" class="btn btn-lg btn-primary" value="Don't want this one!"></td>
+        </tr>
+    </tbody>
+    </table>
+
 <div class="alert alert-danger" role="alert" ng-show="menu.onEmpty">{{menu.onEmpty}}</div>
